@@ -9,12 +9,6 @@ import TypeNav from '@/pages/Home/TypeNav'
 Vue.component(TypeNav.name, TypeNav)
 
 
-//测试
-import {reqCategoryList} from '@/api'
-
-reqCategoryList()
-
-
 Vue.config.productionTip = false
 new Vue({
   render: h => h(App),
