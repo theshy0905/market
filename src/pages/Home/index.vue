@@ -1,13 +1,36 @@
 <template>
     <div>
-       <TypeNav></TypeNav>
+        <TypeNav/>
+        <ListContainer/>
+        <Recommend/>
+        <Rank/>
+        <Like/>
+        <Floor/> 
+        <Floor/> 
+        <Brand/> 
     </div>
 </template>
 
-<script >
-
+<script>
+import ListContainer from '../Home/ListContainer';
+import Recommend from '../Home/Recommend';
+import Rank from '../Home/Rank';
+import Like from '../Home/Like';
+import Floor from '../Home/Floor';
+import Brand from '../Home/Brand';
+export default {
+    name: '',
+    components: {
+        ListContainer,
+        Recommend,
+        Rank,
+        Like,
+        Floor,
+        Brand,
+    }
+}
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 
 </style>
