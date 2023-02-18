@@ -1,14 +1,10 @@
 <template>
     <div>
-        首页
-        首页
-        首页
-        首页
-        首页
+       <TypeNav></TypeNav>
     </div>
 </template>
 
-<script setup>
+<script >
 
 </script>
 
