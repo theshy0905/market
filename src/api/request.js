@@ -18,7 +18,7 @@ const requests = axios.create({
 requests.interceptors.request.use((config) => {
     // config：配置对象，其有一个重要属性：header请求头
     nprogress.start();
-    return config
+    return config;
 
 })
 // 响应拦截器：当服务器数据返回以后，可以处理一些事情。
@@ -26,9 +26,6 @@ requests.interceptors.response.use(((res) => {
     // 服务器响应成功的回调函数
     nprogress.done();
     return res.data;
-},(error) => {
-    // 服务器响应失败的回调函数
-    return Promise.reject(new Error('faile'));
 }))
 
 
