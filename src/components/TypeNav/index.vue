@@ -44,6 +44,8 @@
 
 <script >
 import { mapState } from 'vuex';
+import throttle from 'lodash/throttle';
+
 export default {
     name: "TypeNav",
      computed: {
@@ -62,10 +64,10 @@ export default {
          this.$store.dispatch("categoryList");
     },
     methods:{
-        changrIndex(index){
+        // 节流
+        changrIndex:throttle(function(index){
             this.currentIndex=index;  
-            
-        },
+        },50),
         leaveIndex(){
             this.currentIndex=-1;
         }
