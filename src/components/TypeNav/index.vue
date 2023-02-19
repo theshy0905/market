@@ -14,21 +14,24 @@
             </nav>
             <div class="sort">
 
-                <div class="all-sort-list2">
-                    <div class="item" v-for= "(c1, index) in categoryList" :key="c1.categoryId">
-                        <h3 @mouseenter="changrIndex(index)" :class="{cur:currentIndex ==index}">
-                            <a href="#">{{ c1.categoryName }}</a>
+                <div class="all-sort-list2" @click="goSearch">
+                    <div class="item" v-for="(c1, index) in categoryList" :key="c1.categoryId">
+                        <h3 @mouseenter="changrIndex(index)" :class="{ cur: currentIndex == index }">
+                            <a :data-categoryName="c1.categoryName" :data_category1Id="c1.categoryId">{{ c1.categoryName
+                            }}</a>
                         </h3>
                         <!-- 二三级分类 -->
-                        <div class="item-list clearfix" :style="{display:currentIndex==index?'block':'none'}">
+                        <div class="item-list clearfix" :style="{ display: currentIndex == index ? 'block' : 'none' }">
                             <div class="subitem" v-for="(c2, index) in c1.categoryChild" :key="c2.categroyId">
                                 <dl class="fore">
                                     <dt>
-                                        <a href="#">{{ c2.categoryName }}</a>
+                                        <a :data-categoryName="c2.categoryName" :data_category2Id="c2.categoryId">{{
+                                            c2.categoryName }}</a>
                                     </dt>
                                     <dd>
                                         <em v-for="(c3, index) in c2.categoryChild" :key="c3.categroyId">
-                                            <a href="#">{{ c3.categoryName }}</a>
+                                            <a :data-categoryName="c3.categoryName" :data_category3Id="c3.categoryId">{{
+                                                c3.categoryName }}</a>
                                         </em>
                                     </dd>
                                 </dl>
@@ -48,31 +51,54 @@ import throttle from 'lodash/throttle';
 
 export default {
     name: "TypeNav",
-     computed: {
+    computed: {
         ...mapState({
             //从仓库拿数据
             categoryList: (state) => state.home.categoryList
         })
     },
-    
-    data(){
-        return{
-                 currentIndex:-1, 
+
+    data() {
+        return {
+            currentIndex: -1,
         }
     },
     mounted() {
-         this.$store.dispatch("categoryList");
+        this.$store.dispatch("categoryList");
     },
-    methods:{
+    methods: {
         // 节流
-        changrIndex:throttle(function(index){
-            this.currentIndex=index;  
-        },50),
-        leaveIndex(){
-            this.currentIndex=-1;
+        changrIndex: throttle(function (index) {
+            this.currentIndex = index;
+        }, 50),
+
+        leaveIndex() {
+            this.currentIndex = -1;
+        },
+        
+        goSearch(event) {
+            console.log(event)
+            let element = event.target;
+            let { categoryname, category1id, category2id, category3id } =
+        element.dataset;
+      if (categoryname) {
+        // 路由跳转的参数
+        let location = { name: "search" };
+        let query = { categoryName: categoryname };
+        if (category1id) {
+          query.category1Id = category1id;
+        } else if (category2id) {
+          query.category2Id = category2id;
+        } else {
+          query.category2Id = category2id;
         }
+        location.query = query
+        // 路由跳转
+        this.$router.push(location)
+        }
+
     }
-   
+    }
 }
 
 </script>
@@ -105,9 +131,10 @@ export default {
                 line-height: 45px;
                 font-size: 16px;
                 color: #333;
-                
+
             }
-            a:hover{
+
+            a:hover {
                 text-decoration: none;
             }
         }
@@ -138,7 +165,7 @@ export default {
                     }
 
                     .item-list {
-                       
+
                         position: absolute;
                         width: 734px;
                         min-height: 460px;
@@ -193,7 +220,7 @@ export default {
                     }
                 }
 
-                .cur{
+                .cur {
                     background-color: red;
                 }
             }
