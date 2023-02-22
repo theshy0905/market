@@ -1,23 +1,14 @@
 <template>
     <div class="typeNav">
-        <div class="container" @mouseleave="leaveIndex">
+        <div class="container" @mouseleave="leaveIndex" @mouseenter="enterShow">
             <h2 class="all">全部商品分类</h2>
-            <nav class="nav">
-                <a href="###">服装城</a>
-                <a href="###">美妆馆</a>
-                <a href="###">尚品汇超市</a>
-                <a href="###">全球购</a>
-                <a href="###">闪购</a>
-                <a href="###">团购</a>
-                <a href="###">有趣</a>
-                <a href="###">秒杀</a>
-            </nav>
-            <div class="sort">
+            <transition name="sort">
+            <div class="sort" v-show="show"  >
 
                 <div class="all-sort-list2" @click="goSearch">
                     <div class="item" v-for="(c1, index) in categoryList" :key="c1.categoryId">
                         <h3 @mouseenter="changrIndex(index)" :class="{ cur: currentIndex == index }">
-                            <a :data-categoryName="c1.categoryName" :data_category1Id="c1.categoryId">{{ c1.categoryName
+                            <a :data-categoryName="c1.categoryName" :data-category1Id="c1.categoryId">{{ c1.categoryName
                             }}</a>
                         </h3>
                         <!-- 二三级分类 -->
@@ -25,12 +16,12 @@
                             <div class="subitem" v-for="(c2, index) in c1.categoryChild" :key="c2.categroyId">
                                 <dl class="fore">
                                     <dt>
-                                        <a :data-categoryName="c2.categoryName" :data_category2Id="c2.categoryId">{{
+                                        <a :data-categoryName="c2.categoryName" :data-category2Id="c2.categoryId">{{
                                             c2.categoryName }}</a>
                                     </dt>
                                     <dd>
                                         <em v-for="(c3, index) in c2.categoryChild" :key="c3.categroyId">
-                                            <a :data-categoryName="c3.categoryName" :data_category3Id="c3.categoryId">{{
+                                            <a :data-categoryName="c3.categoryName" :data-category3Id="c3.categoryId">{{
                                                 c3.categoryName }}</a>
                                         </em>
                                     </dd>
@@ -41,6 +32,17 @@
                 </div>
 
             </div>
+            </transition>
+            <nav class="nav">
+                <a href="###">服装城</a>
+                <a href="###">美妆馆</a>
+                <a href="###">尚品汇超市</a>
+                <a href="###">全球购</a>
+                <a href="###">闪购</a>
+                <a href="###">团购</a>
+                <a href="###">有趣</a>
+                <a href="###">秒杀</a>
+            </nav>
         </div>
     </div>
 </template>
@@ -61,10 +63,16 @@ export default {
     data() {
         return {
             currentIndex: -1,
+            show:true
         }
     },
     mounted() {
-        this.$store.dispatch("categoryList");
+       
+
+        //如果不是home路由，则typeNav组件一级分类影藏
+        if(this.$route.path!='/home'){
+            this.show=false
+        }
     },
     methods: {
         // 节流
@@ -74,25 +82,38 @@ export default {
 
         leaveIndex() {
             this.currentIndex = -1;
+            if(this.$route.path!='/home'){
+                this.show=false 
+            }
+        },
+        enterShow(){
+            this.show=true
         },
         
         goSearch(event) {
             console.log(event)
             let element = event.target;
-            let { categoryname, category1id, category2id, category3id } =
-        element.dataset;
+            let { categoryname, category1id, category2id, category3id } =element.dataset;
+        console.log(element)
+        console.log(element.dataset)
+        console.log(categoryname, category1id, category2id, category3id)
       if (categoryname) {
         // 路由跳转的参数
         let location = { name: "search" };
         let query = { categoryName: categoryname };
+
         if (category1id) {
           query.category1Id = category1id;
         } else if (category2id) {
           query.category2Id = category2id;
         } else {
-          query.category2Id = category2id;
+          query.category3Id = category3id;
         }
         location.query = query
+        if(this.$route.params){
+            location.params = this.$route.params
+        }
+
         // 路由跳转
         this.$router.push(location)
         }
@@ -224,6 +245,16 @@ export default {
                     background-color: red;
                 }
             }
+        }
+        //过度动画样式
+        .sort-enter{
+            height: 0px;
+        }
+        .sort-enter-to{
+            height: 461px;
+        }
+        .sort-enter-active{
+            transition :all .5   s linear
         }
     }
 }

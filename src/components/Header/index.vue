@@ -50,7 +50,7 @@
         }
     },
     methods:{
-        gosearch() {
+        
       // 路由传递参数：
       // 第一种：字符串形式
       //   this.$router.push(
@@ -60,12 +60,20 @@
       //   `/search/${this.keyword}?k=${this.keyword.toUpperCase()}`
       // );
       // 第三种：对象(常用)
-      this.$router.push({
-        name: "search", 
-        params: { keyword: this.keyword||undefined},
-        query: { b: this.keyword.toUpperCase() },
-      });
-    },       
+          // 搜索按钮的回调函数，点击按钮跳转至search路由
+    gosearch() {
+      let location = {
+        name: "search",
+        params: { keyword: this.keyword || undefined },
+      };
+      // 合并参数，如果有query参数，则和params参数一起传递
+      if (this.$route.query) {
+        location.query = this.$route.query;
+      }
+      this.$router.push(location);
+    },
+
+       
     }
     
   }
