@@ -103,6 +103,19 @@
 </template>
 
 <script >
+import {mapState} from "vuex";
+export default  {
+    name:'ListContainer',
+    mounted(){
+        //派发action:通过VUex发起请求
+        this.$store.dispatch('getBannerList')
+    },
+    computed:{
+        // ...mapState({
+        //     bannerList:this.state => state.home.bannerList
+        // })
+    }
+}
 
 </script>
 
