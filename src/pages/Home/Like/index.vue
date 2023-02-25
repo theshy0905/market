@@ -8,42 +8,42 @@
                 <div class="bd">
                     <ul class="favourate">
                         <li>
-                            <img src="@/assets/images/home/like_02.png" alt="" />
+                            <img src="../../../../public/assets/images/home/like_02.png" alt="" />
                             <div class="like-text">
                                 <p>阳光美包新款单肩包女包时尚子母包四件套女</p>
                                 <h3>¥116.00</h3>
                             </div>
                         </li>
                         <li>
-                            <img src="@/assets/images/home/like_03.png" alt="" />
+                            <img src="../../../../public/assets/images/home/like_03.png" alt="" />
                             <div class="like-text">
                                 <p>阳光美包新款单肩包女包时尚子母包四件套女</p>
                                 <h3>¥116.00</h3>
                             </div>
                         </li>
                         <li>
-                            <img src="@/assets/images/home/like_01.png" alt="" />
+                            <img src="../../../../public/assets/images/home/like_01.png" alt="" />
                             <div class="like-text">
                                 <p>阳光美包新款单肩包女包时尚子母包四件套女</p>
                                 <h3>¥116.00</h3>
                             </div>
                         </li>
                         <li>
-                            <img src="@/assets/images/home/like_02.png" alt="" />
+                            <img src="../../../../public/assets/images/home/like_02.png" alt="" />
                             <div class="like-text">
                                 <p>阳光美包新款单肩包女包时尚子母包四件套女</p>
                                 <h3>¥116.00</h3>
                             </div>
                         </li>
                         <li>
-                            <img src="@/assets/images/home/like_03.png" alt="" />
+                            <img src="../../../../public/assets/images/home/like_03.png" alt="" />
                             <div class="like-text">
                                 <p>阳光美包新款单肩包女包时尚子母包四件套女</p>
                                 <h3>¥116.00</h3>
                             </div>
                         </li>
                         <li>
-                            <img src="@/assets/images/home/like_01.png" alt="" />
+                            <img src="../../../../public/assets/images/home/like_01.png" alt="" />
                             <div class="like-text">
                                 <p>阳光美包新款单肩包女包时尚子母包四件套女</p>
                                 <h3>¥116.00</h3>
@@ -78,7 +78,7 @@
 
                 .fr {
                     float: right;
-                    // background-image: url(@/assets/images/home/icons.png);
+                    // background-image: url(../../../../public/assets/images/home/icons.png);
                     width: 66px;
                     height: 25px;
                     background-position: 182px -104px;

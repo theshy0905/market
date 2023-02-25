@@ -29,7 +29,7 @@
                         <div class="img-item">
                             <p class="tab-pic">
                                 <a href="#">
-                                    <img src="@/assets/images/home/1.jpg" />
+                                    <img src="../../../../public/assets/images/home/1.jpg" />
                                 </a>
                             </p>
                             <div class="tab-info">
@@ -42,7 +42,7 @@
                         <div class="img-item">
                             <p class="tab-pic">
                                 <a href="#">
-                                    <img src="@/assets/images/home/1.jpg" />
+                                    <img src="../../../../public/assets/images/home/1.jpg" />
                                 </a>
                             </p>
                             <div class="tab-info">
@@ -55,7 +55,7 @@
                         <div class="img-item">
                             <p class="tab-pic">
                                 <a href="#">
-                                    <img src="@/assets/images/home/1.jpg" />
+                                    <img src="../../../../public/assets/images/home/1.jpg" />
                                 </a>
                             </p>
                             <div class="tab-info">
@@ -68,7 +68,7 @@
                         <div class="img-item">
                             <p class="tab-pic">
                                 <a href="#">
-                                    <img src="@/assets/images/home/1.jpg" />
+                                    <img src="../../../../public/assets/images/home/1.jpg" />
                                 </a>
                             </p>
                             <div class="tab-info">
@@ -118,7 +118,7 @@
                             width: 35px;
                             height: 35px;
                             display: block;
-                            // background: url(@/assets/images/home/bg0.png);
+                            // background: url(../../../../public/assets/images/home/bg0.png);
                             margin-left: 10px;
                         }
                     }

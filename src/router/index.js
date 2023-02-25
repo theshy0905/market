@@ -36,13 +36,17 @@ export default new VueRouter({
     //配置路由
     routes:[
         {
+            path: '/',
+            redirect: '/home'
+        },
+        {
             path:"/home",
             component:Home,
             //
             meta:{show:true}
         },
         {
-            path:"/search",
+            path:"/search/:keyword",
             component:Search,
             meta:{show:true},
             //对象形式路由传递参数

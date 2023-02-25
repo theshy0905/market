@@ -5,11 +5,15 @@
                 <div class="center">
                     <!--banner轮播-->
                     <div class="swiper-container" id="mySwiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img src="@/assets/images/home/banner1.jpg" />
+                        <div class="swiper-wrapper" >
+                                <div class="swiper-slide"
+                                v-for="(carousel,index) in bannerList"
+                                :key="carousel.id"
+                                >
+                                <img :src="carousel.imgUrl">
+                                <img src="../../../../public/assets/images/home/banner1.jpg">
                             </div>
-                            
+                          
                         </div>
                         <!-- 如果需要分页器 -->
                         <div class="swiper-pagination"></div>
@@ -95,7 +99,7 @@
                         </li>
                     </ul>
                     <div class="ads">
-                        <img src="@/assets/images/home/ad1.png" />
+                        <img src="../../../../public/assets/images/home/ad1.png" />
                     </div>
                 </div>
             </div>
@@ -103,6 +107,43 @@
 </template>
 
 <script >
+import {mapState} from "vuex";
+import Swiper from "swiper";
+export default  {
+    name:'ListContainer',
+    mounted(){
+        //派发action:通过VUex发起请求
+        this.$store.dispatch('getBannerList');
+        
+    // 发起ajax请求是异步操作，数据还没有修改完成，导致组件结构不完整，就new Swiper，会出错，所以应加定时器，一段时间后再new Swiper
+    // 放在updated()中即数据更新后触发，但如果其他数据更新，则会造成多次new Swiper，此方法不行。
+    // 放在mounted()中并加定时器也不是最好的办法，下节会有好办法。
+    setTimeout(() => {
+      // 使用Swiper插件，初始化swiper
+      var mySwiper = new Swiper(".swiper-container", {
+        autoplay: true, // 自动切换
+        loop: true, // 循环模式选项
+        // 如果需要分页器
+        pagination: {
+          el: ".swiper-pagination",
+          // 点击圆点切换图片
+          clickable: true,
+        },
+        // 如果需要前进后退按钮
+        navigation: {
+          prevEl: ".swiper-button-prev",
+          nextEl: ".swiper-button-next",
+        },
+      }); 
+    }, 1000);
+    console.log(this.bannerList)
+    },
+    computed:{
+        ...mapState({
+            bannerList:state => state.home.bannerList
+        })
+    }
+}
 
 </script>
 
@@ -177,7 +218,7 @@
                         width: 25%;
 
                         .list-item {
-                            // background-image: url('@/assets/images/home/icons.png');
+                            background-image: url('../../../../public/assets/images/home/icons.png');
                             width: 61px;
                             height: 40px;
                             display: block;
