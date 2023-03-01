@@ -10,4 +10,8 @@ export const reqCategoryList = () =>
     //获取轮播图接口
     export const reqGetBannerList=() =>
      mockRequests({ url: "/banner", method: "get" })
+
+     //获取floor数据
+     export const reqFloorList=() =>
+     mockRequests({ url: "/floor", method: "get" })
     
