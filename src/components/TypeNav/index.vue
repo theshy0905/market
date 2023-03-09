@@ -254,7 +254,7 @@ export default {
             height: 461px;
         }
         .sort-enter-active{
-            transition :all .5   s linear
+            transition :all .5s
         }
     }
 }
