@@ -11,21 +11,13 @@ Vue.component(TypeNav.name, TypeNav)
 import Carousel from "@/components/Carousel"
 Vue.component(Carousel.name, Carousel)
 
-
-
 //引入mock数据模拟
 import '@/mock/mockServe'
 // 引入swiper样式
 import "swiper/css/swiper.css"
 
-
-
-//引入mock数据模拟
-import '@/mock/mockServe'
-
-
 Vue.config.productionTip = false
 new Vue({
   render: h => h(App),
-  router,store
+  router, store
 }).$mount('#app')
