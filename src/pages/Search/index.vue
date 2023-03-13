@@ -116,6 +116,9 @@ import { mapGetters, mapState } from 'vuex'
 import SearchSelector from './SearchSelector/SearchSelector'
 export default {
   name: 'Search',
+  created() {
+    console.log(this.$route.query)
+  },
   mounted() {
     this.getData();
   },
