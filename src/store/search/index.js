@@ -1,44 +1,50 @@
-// search 模块的小仓库
-import { reqGetSearchInfo } from "@/api"
-// state：仓库存储数据的地方
+//引入接口函数
+import { reqSearchList } from '@/api';
+
+//state：仓库数据的来源
 const state = {
+    //存储搜索模块的数据
     searchList: {}
-}
-// mutations：修改state的唯一手段
+};
+//mutations:唯一可以改变state数据地方
 const mutations = {
     GETSEARCHLIST(state, searchList) {
-        state.searchList = searchList
+        state.searchList = searchList;
     }
-}
-// actions：处理action，书写自己的业务逻辑、也可以处理异步
+};
+//actions:可以处理dispatch派发action地方，这里可以书写你的业务逻辑：for、if、异步语句等等
 const actions = {
-    async getSearchList({ commit }, params = {}) {
-        let result = await reqGetSearchInfo(params)
+    //获取搜索页面的数据
+    async getSearchList({ commit }, data) {
+        //注意:获取搜索页面的数据（请求接口），至少携带一个空对象才能获取数据
+        let result = await reqSearchList(data);
         if (result.code == 200) {
-            commit("GETSEARCHLIST", result.data)
+            commit("GETSEARCHLIST", result.data);
         }
-
     }
-}
-// getters：计算属性，用于简化仓库数据，让组件获取仓库的数据更方便
+};
+//getters:计算属性（基础课程的时候）
+//getters:作用,getters是为了简化数据而生（为了组件获取数据方便而生）
 const getters = {
+    //搜索模块【商品展示的数据】
+    //state：它是当前小仓库（search）的state数据，没有home仓库中的state
+    //只是当前仓库的state
     goodsList(state) {
-        return state.searchList.goodsList || []; 
+        return state.searchList.goodsList;
     },
-    trademarkList(state) {
-        return state.searchList.trademarkList
+    //品牌数据
+    tradeMarkList(state) {
+        return state.searchList.trademarkList;
     },
-    attrsLiist(state) {
-        return state.searchList.attrsLiist
+    //平台属性
+    attrsList() {
+        return state.searchList.attrsList;
     }
+};
 
-
-}
-
-// 对外暴露
 export default {
     state,
     mutations,
     actions,
-    getters,
+    getters
 }

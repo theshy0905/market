@@ -16,8 +16,7 @@ export const reqFloorList = () =>
     mockRequests({ url: "/floor", method: "get" })
 
 //获取搜索模块接口
-export const reqGetSearchInfo = (params) =>
-    requests({ url: "/list", method: "post", data: { params } })
 // export const reqGetSearchInfo = (params) =>
 //     mockRequests({ url: "/list", method: "post", data: { params } })
+export const reqSearchList = (data) => requests({ url: "/list", method: 'post', data });
 
