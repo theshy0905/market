@@ -38,6 +38,7 @@
                 <li :class="{ active: isComprehensive }" @click="changeOrder('1')">
                   <a>综合<span v-show="isComprehensive" class="iconfont"
                       :class="{ 'icon-long-arrow-down': isDesc, 'icon-long-arrow-up': isAsc }"></span></a>
+
                 </li>
                 <li :class="{ active: isPrice }" @click="changeOrder('2')">
                   <a>价格<span v-show="isPrice" class="iconfont"
@@ -51,9 +52,9 @@
               <li class="yui3-u-1-5" v-for="good in goodsList" :key="good.id">
                 <div class="list-wrap">
                   <div class="p-img">
-                    <!-- <router-link :to="`/detail/${good.id}`"> -->
-                    <img :src="good.defaultImg" />
-                    <!-- </router-link> -->
+                    <router-link :to="`/detail/${good.id}`">
+                      <img :src="good.defaultImg" />
+                    </router-link>
                   </div>
                   <div class="price">
                     <strong>
@@ -116,7 +117,7 @@ export default {
         order: "1:desc", //携带给服务器参数order--->初始值"1:desc"[综合降序]
         pageNo: 1,
         // pageNo:parseInt(localStorage.getItem('pageNo'))||1, //获取第几页的数据，默认即为第一个的数据
-        pageSize: 20, //每一页需要展示多少条数据
+        pageSize: 5, //每一页需要展示多少条数据
 
       },
     };

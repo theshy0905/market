@@ -1,13 +1,14 @@
 <template>
   <div class="pagination">
-    {{ startAndEndNum }}
-    <button :disabled="pageNo==1" @click="$emit('currentPage',pageNo-1)">上一页</button>
-    <button v-if="startAndEndNum.start>=2" @click="$emit('currentPage',1)">1</button>
-    <button v-if="startAndEndNum.start>=3">···</button>
-    <button v-for="page in  startAndEndNum.end" :key="page" v-show="page>=startAndEndNum.start" :class="{active:pageNo==page}" @click="$emit('currentPage',page)">{{page}}</button>
+    <!-- {{ startAndEndNum }} -->
+    <button :disabled="pageNo == 1" @click="$emit('currentPage', pageNo - 1)">上一页</button>
+    <button v-if="startAndEndNum.start >= 2" @click="$emit('currentPage', 1)">1</button>
+    <button v-if="startAndEndNum.start >= 3">···</button>
+    <button v-for="page in  startAndEndNum.end" :key="page" v-show="page >= startAndEndNum.start"
+      :class="{ active: pageNo == page }" @click="$emit('currentPage', page)">{{ page }}</button>
     <button v-if="startAndEndNum.end < totalPage - 1">···</button>
-    <button v-if="startAndEndNum.end < totalPage" @click="$emit('currentPage',totalPage)">{{ totalPage }}</button>
-    <button :disabled="pageNo==totalPage" @click="$emit('currentPage',pageNo+1)">下一页</button>
+    <button v-if="startAndEndNum.end < totalPage" @click="$emit('currentPage', totalPage)">{{ totalPage }}</button>
+    <button :disabled="pageNo == totalPage" @click="$emit('currentPage', pageNo + 1)">下一页</button>
     <button style="margin-left: 30px">共 {{ total }} 条</button>
   </div>
 </template>
@@ -18,7 +19,7 @@ export default {
   props: ["total", "pageSize", "pageNo", "continues"],
   computed: {
     //通过父组件传递数据total/pageSize计算出一共多少页
-    totalPage() {
+      totalPage() {
       return Math.ceil(this.total / this.pageSize);
     },
     //计算出连续页码的数字(开始数字|结束数字)【比如:8  6 7 8 9 10】
@@ -28,7 +29,7 @@ export default {
       let start = pageNo - parseInt(continues / 2);
       let end = pageNo + parseInt(continues / 2);
       //还有一些不符合条件的需要纠正数字
-      
+
       //pageNO 1  2 
       if (start < 1) {
         start = 1;
@@ -50,6 +51,7 @@ export default {
 <style lang="less" scoped>
 .pagination {
   text-align: center;
+
   button {
     margin: 0 5px;
     background-color: #f4f4f5;

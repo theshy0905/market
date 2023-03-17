@@ -6,11 +6,11 @@ import store from '@/store'
 //三级联动组件+全局组件
 import TypeNav from '@/components/TypeNav'
 import Pagination from '@/components/Pagination';
+//引入组件Carousel
+import Carousel from "@/components/Carousel"
 //第一个参数全局组件的名字 第二个参数：哪一个组件
 Vue.component(TypeNav.name, TypeNav)
 Vue.component(Pagination.name, Pagination);
-//引入组件Carousel
-import Carousel from "@/components/Carousel"
 Vue.component(Carousel.name, Carousel)
 
 //引入mock数据模拟
@@ -26,7 +26,7 @@ new Vue({
     Vue.prototype.$bus = this;
     //把全部的请求函数：作为Vue.prototype的属性，组件实例可以获取
     //请求函数只需要注册一次，可以在组件当中使用。
-    Vue.prototype.$API = API;
+    // Vue.prototype.$API = API;
   }
   ,
 
