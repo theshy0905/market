@@ -5,13 +5,15 @@ Vue.use(Vuex);
 
 import home from './home'
 import search from './search'
+import detail from './detail'
 
-const state = {a:1}
+const state = {  }
 
 export default new Vuex.Store({
-   modules:{
-    home,
-    search,
+   modules: {
+      home,
+      search,
+      detail
    }
-   
+
 }) 

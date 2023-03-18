@@ -20,3 +20,6 @@ export const reqFloorList = () =>
 //     mockRequests({ url: "/list", method: "post", data: { params } })
 export const reqSearchList = (data) => requests({ url: "/list", method: 'post', data });
 
+//获取产品详情接口
+export const reqGoodsInfo = (skuId) => requests({ url: `/item/${skuId}`, method: "get" })
+
