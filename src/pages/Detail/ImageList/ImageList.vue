@@ -1,8 +1,8 @@
 <template>
-  <div class="swiper-container">
+  <div class="swiper-container" ref="cur">
     <div class="swiper-wrapper">
-      <div class="swiper-slide" v-for="slide in skuImageList" :key="slide.id">
-        <img :src="slide.imgUrl">
+      <div class="swiper-slide" v-for=" slide, index in skuImageList" :key="index">
+        <img :src="slide.imgUrl" @click="handler(index)" :class="{ active: currentIndex == index }">
       </div>
     </div>
     <div class="swiper-button-next"></div>
@@ -15,9 +15,21 @@
 import Swiper from 'swiper'
 export default {
   name: "ImageList",
+  data() {
+    return {
+      currentIndex: 0,
+    }
+  },
+  methods: {
+    handler(index) {
+      this.currentIndex = index;
+      //通过全局事件总线：通知兄弟当前显示第几张图
+      this.$bus.$emit('getIndex', index);
+    },
+  },
   props: ['skuImageList'],
   watch: {
-    imageList() {
+    skuImageList(newValue, oldValue) {
       //组件实例的方法$nextTick
       this.$nextTick(() => {
         //初始化swiper实例
@@ -35,7 +47,7 @@ export default {
           },
         });
       });
-    },   
+    },
   }
 }
 </script>
@@ -65,10 +77,7 @@ export default {
         padding: 1px;
       }
 
-      &:hover {
-        border: 2px solid #f60;
-        padding: 1px;
-      }
+
     }
   }
 

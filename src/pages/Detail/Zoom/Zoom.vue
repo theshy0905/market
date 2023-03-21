@@ -1,7 +1,7 @@
 <template>
   <div class="spec-preview">
     <img :src="imgObj.imgUrl" />
-    <div class="event"></div>
+    <div class="event" @mousemove="handler"></div>
     <div class="big">
       <img :src="imgObj.imgUrl" />
     </div>
@@ -13,10 +13,38 @@
 export default {
   name: "Zoom",
   props: ['skuImageList'],
+  data() {
+    return {
+      currenIndex: 0
+    }
+  },
+  mounted() {
+    //全局事件总线，获取值
+    this.$bus.$on('getIndex', (index) => {
+      this.currenIndex = index
+    })
+  },
   computed: {
     imgObj() {
-      return this.skuImageList[0] || {}
+      return this.skuImageList[this.currenIndex] || {}
     }
+  },
+  methods: {
+    handler(event) {
+      const mask = document.querySelector('.mask');
+      let big = document.querySelector('.big img');
+      let left = event.offsetX - mask.offsetWidth / 2;
+      let top = event.offsetY - mask.offsetHeight / 2;
+      if (left < 0) left = 0;
+      if (left > mask.offsetWidth) left = mask.offsetWidth
+      if (top < 0) top = 0;
+      if (top > mask.offsetHeight) top = mask.offsetHeight
+      mask.style.left = left + 'px'
+      mask.style.top = top + 'px'
+      big.style.left = -2 * left + 'px'
+      big.style.top = -2 * top + 'px'
+    }
+
   }
 }
 </script>
@@ -62,7 +90,7 @@ export default {
     overflow: hidden;
     z-index: 998;
     display: none;
-    background: white;
+    background: rgb(226, 55, 55);
 
     img {
       width: 200%;
