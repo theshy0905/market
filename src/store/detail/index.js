@@ -15,8 +15,9 @@ const actions = {
         if (result.code == 200) {
             commit('GETGOODINFO', result.data)
         }
+    },
+    async  
 
-    }
 }
 const getters = {
     categoryView(state) {

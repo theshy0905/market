@@ -75,9 +75,9 @@
             </div>
             <div class="cartWrap">
               <div class="controls">
-                <input autocomplete="off" class="itxt">
-                <a href="javascript:" class="plus">+</a>
-                <a href="javascript:" class="mins">-</a>
+                <input autocomplete="off" class="itxt" v-model.number="skunum" @change="changeSkuNum">
+                <a href="javascript:" class="plus" @click="skunum++">+</a>
+                <a href="javascript:" class="mins" @click="skunum > 1 ? skunum-- : skunum">-</a>
               </div>
               <div class="add">
                 <a href="javascript:">加入购物车</a>
@@ -337,6 +337,11 @@ import Zoom from './Zoom/Zoom'
 
 export default {
   name: 'Detail',
+  data() {
+    return {
+      skunum: 1
+    }
+  },
 
   components: {
     ImageList,
@@ -350,11 +355,22 @@ export default {
 
   },
   methods: {
-    changeActive(saleAttrValue,arr) {
-    arr.forEach(element => {
-      element.isChecked=0
-    });
-    saleAttrValue.isChecked=1
+    changeActive(saleAttrValue, arr) {
+      arr.forEach(element => {
+        element.isChecked = 0
+      });
+      saleAttrValue.isChecked = 1
+    },
+    changeSkuNum(event) {
+      // let pattern = new RegExp("^[2-9]\d*$")
+      // this.skunum = pattern.exec(event.taregt.value)
+      let value = event.target.value * 1;
+      if (isNaN(value) || value < 1) {
+        this.skunum = 1
+      } else {
+        this.skunum = parseInt(value)
+      }
+
     }
 
   }
