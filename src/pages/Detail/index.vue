@@ -349,6 +349,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch('getGoodInfo', this.$route.params.skuid)
+
   },
   computed: {
     ...mapGetters(['categoryView', 'skuInfo', 'spuSaleAttrList']),

@@ -2,7 +2,7 @@ import { reqGoodsInfo } from '@/api'
 
 const state = {
     goodInfo: {},
-    asda: { a: "测试" }
+
 }
 const mutations = {
     GETGOODINFO(state, goodInfo) {
@@ -14,9 +14,11 @@ const actions = {
         let result = await reqGoodsInfo(skuId);
         if (result.code == 200) {
             commit('GETGOODINFO', result.data)
+            console.log(result);
         }
+
     },
-    async  
+
 
 }
 const getters = {
